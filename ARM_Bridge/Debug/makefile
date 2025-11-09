@@ -28,29 +28,29 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 ELFSIZE += \
-Arm_Bridge1.elf.size \
+ARM_Bridge.elf.size \
 
 
 # All Target
-all: Arm_Bridge1.elf secondary-outputs
+all: ARM_Bridge.elf secondary-outputs
 
 # Tool invocations
-Arm_Bridge1.elf: $(OBJS)  $(USER_OBJS)
+ARM_Bridge.elf: $(OBJS)  $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: ARM v7 Linux gcc linker'
-	arm-linux-gnueabihf-gcc  -o "Arm_Bridge1.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-linux-gnueabihf-gcc  -o "ARM_Bridge.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-Arm_Bridge1.elf.size: Arm_Bridge1.elf
+ARM_Bridge.elf.size: ARM_Bridge.elf
 	@echo 'Invoking: ARM v7 Linux Print Size'
-	arm-linux-gnueabihf-size Arm_Bridge1.elf  |tee "Arm_Bridge1.elf.size"
+	arm-linux-gnueabihf-size ARM_Bridge.elf  |tee "ARM_Bridge.elf.size"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(EXECUTABLES)$(OBJS)$(S_UPPER_DEPS)$(C_DEPS)$(ELFSIZE) Arm_Bridge1.elf
+	-$(RM) $(EXECUTABLES)$(OBJS)$(S_UPPER_DEPS)$(C_DEPS)$(ELFSIZE) ARM_Bridge.elf
 	-@echo ' '
 
 secondary-outputs: $(ELFSIZE)
